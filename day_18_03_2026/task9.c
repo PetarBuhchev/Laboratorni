@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 int main() {
-    char name[] = "Ivan";
+    char name[] = "Petar";
     printf("Hello, %s!\n", name);
     return 0;
 }

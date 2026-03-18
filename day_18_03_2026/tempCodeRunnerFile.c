@@ -1,9 +1,11 @@
 #include <stdio.h>
 
 int main() {
-    double arr[] = {4.5, 6.7, 7.3};
-    for (int i = 0; i < 3; i++) {
-        printf("%d: %lf\n", i, arr[i]);
-    }
+    int arr[] = {10,20,30,40,50,60};
+    int* ptr = arr;
+
+    printf("Size of arr[] %ld\n", sizeof(arr));
+    printf("Size of ptr %ld\n", sizeof(ptr));
+    printf("Size of ptr %ld\n", *ptr++);
     return 0;
 }

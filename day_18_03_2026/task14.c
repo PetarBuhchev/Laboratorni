@@ -17,7 +17,7 @@ int main() {
         i++;
     }
 
-    // Проверка дали и двата низа са приключили
+    
     if (str1[i] == '\0' && str2[i] == '\0') {
         printf("The strings are equal.\n");
     } else {

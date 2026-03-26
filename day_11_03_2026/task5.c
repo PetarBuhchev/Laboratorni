@@ -15,7 +15,7 @@ int main() {
     if (num < 0) {
         printf("Enter new num");
     } else {
-        printf("Binary:  ");
+        printf("Binary: ");
         if (num == 0) printf("0");
         else toBinary(num);
         printf("\n");

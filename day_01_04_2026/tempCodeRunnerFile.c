@@ -2,13 +2,14 @@
 //1. Прочитане на поредицата от клавиатурата
 //2. Извеждане на числата от масива
 //3. Сумиране на числата от масива
+//4. Сумата на числата в зададен интервал
 
 #include <stdio.h>
 #include <stdlib.h>
 
 int main()
 {
-    int *arr = NULL;
+    int *arr;
     int size = 0, capacity = 0, num;
 
     printf("Enter numbers (0 to end):\n");
@@ -39,6 +40,18 @@ int main()
         sum += arr[i];
     }
     printf("Sum of numbers: %d\n", sum);
+
+    int start, end;
+    printf("Enter interval (start end): ");
+    scanf("%d %d", &start, &end);
+    int interval_sum = 0;
+    for (int i = 0; i < size; i++) {
+        if (arr[i] >= start && arr[i] <= end) {
+            interval_sum += arr[i];
+        }
+    }
+    printf("Sum of numbers in interval: %d\n", interval_sum);
+
 
     free(arr);
     return 0;

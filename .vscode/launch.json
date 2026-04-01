@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "d:/Laboratorni/day_26_03_2026",
-      "program": "d:/Laboratorni/day_26_03_2026/build/Debug/outDebug",
+      "cwd": "d:/Laboratorni/day_01_04_2026",
+      "program": "d:/Laboratorni/day_01_04_2026/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

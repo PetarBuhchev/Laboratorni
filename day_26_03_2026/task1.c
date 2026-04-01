@@ -1,6 +1,7 @@
 //Попълнете масив NxN елемента и го попълнете с числа. 
 //Изкарайте елементите на главния диагонал
 #include <stdio.h>
+#include <stdlib.h>
 
 int main() {
     int N;
@@ -11,7 +12,9 @@ int main() {
     printf("Enter the elements of the matrix:\n");
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < N; j++) {
-            scanf("%d", &matrix[i][j]);
+            int r = rand();
+            matrix[i][j] = r;
+            printf("%d ", matrix[i][j]);
         }
     }
 

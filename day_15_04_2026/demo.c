@@ -14,6 +14,12 @@ void printBookDetails(struct Books book) {
     printf("Author: %s\n", book.author);
     printf("Theme: %s\n", book.theme);
 }
+void printBookDetails1(struct Books *book) {
+    printf("ID: %d\n", book->id_book);
+    printf("Title: %s\n", book->title);
+    printf("Author: %s\n", book->author);
+    printf("Theme: %s\n", book->theme);
+}
 
 int main() {
     struct Books book1;

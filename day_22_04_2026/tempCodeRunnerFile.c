@@ -1,34 +1,46 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-
-int main(int argc, char *argv[])
+int main()
 {
-    FILE *fp;
-    double ld;
-    int d;
-    char str[80];
-
-    if (argc != 2) {
-        printf("Specify file name. \n");
+    FILE *fp, *fp1; int i, a, b; i = 1500;
+    if ((fp = fopen("binary", "wb")) == NULL) {
+        printf("The binary file could not be opened!\n");
         exit(1);
     }
 
-    if ((fp = fopen(argv[1], "w")) == NULL) {
-        printf("Cannot open file!\n");
-        exit(1);
+    if ((fp1 = fopen("txt", "w")) == NULL) {
+        printf("The text file could not be opened!\n");
+        exit(2);
     }
 
-    fprintf(fp, "%f %d %s", 12345.342, 1908, "hello");
+    fprintf(fp1, "%d", i);
+    if(fwrite(&i, sizeof(int), 1, fp) != 1) {
+        printf("Write error occured!\n");
+        exit(3);
+    }
+
     fclose(fp);
-
-    if ((fp = fopen(argv[1], "r")) == NULL) {
-        printf("Cannot open file!\n");
-        exit(1);
+    fclose(fp1);
+    if ((fp = fopen("binary", "rb")) == NULL) 
+    {
+        printf("The binary file could not be opened!\n");
+        exit(4);
     }
 
-    fscanf(fp, "%lf %d %s", &ld, &d, str);
-    printf("%f %d %s", ld, d, str);
+    if ((fp1 = fopen("txt", "r")) == NULL) {
+        printf("The text file could not be opened!\n");
+        exit(5);
+    }
+
+    if (fread(&a, sizeof(int), 1, fp) != 1) {
+        printf("Read error occured!\n");
+        exit(6);
+    }
+
+    fscanf(fp1, "%d", &b);
+    printf("a is %d, b is %d\n", a, b);
     fclose(fp);
+    fclose(fp1);
+    system("pause");
     return 0;
 }

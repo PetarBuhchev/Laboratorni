@@ -33,18 +33,22 @@ int main()
     printf("Even numbers: %d\n", even);
     printf("Odd numbers: %d\n", odd);
 
+    // След затваряне на файла:
+    // 1. Отваряне за четене
     fp = fopen("binary", "rb");
     fread(arr, sizeof(int), n, fp);
     fclose(fp);
 
-    for (int i = 0; i < n-1; i++)
-        for (int j = i+1; j < n; j++)
+    // 2. Сортиране (bubble sort)
+    for (i = 0; i < n-1; i++)
+        for (j = i+1; j < n; j++)
             if (arr[i] > arr[j]) {
                 int temp = arr[i];
                 arr[i] = arr[j];
                 arr[j] = temp;
             }
 
+    // 3. Запис в текстов файл
     fp = fopen("sorted.txt", "w");
     for (i = 0; i < n; i++)
         fprintf(fp, "%d\n", arr[i]);

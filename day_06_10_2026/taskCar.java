@@ -137,7 +137,14 @@ class Car {
 
             boolean isDuplicate = false;
             for (int j = 0; j < uniqueCount; j++) {
-                if (cars[i].equals(temp[j])) {
+                Car other = temp[j];
+                if (cars[i].getBrand().equalsIgnoreCase(other.getBrand()) &&
+                    cars[i].getModel().equalsIgnoreCase(other.getModel()) &&
+                    cars[i].getColor().equalsIgnoreCase(other.getColor()) &&
+                    cars[i].getPower() == other.getPower() &&
+                    cars[i].getEngineType().equalsIgnoreCase(other.getEngineType()) &&
+                    cars[i].getGearbox().equalsIgnoreCase(other.getGearbox()) &&
+                    cars[i].getYear() == other.getYear()) {
                     isDuplicate = true;
                     break;
                 }
@@ -154,37 +161,13 @@ class Car {
         }
         return result;
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        Car other = (Car) obj;
-        return power == other.power &&
-               year == other.year &&
-               brand.equalsIgnoreCase(other.brand) &&
-               model.equalsIgnoreCase(other.model) &&
-               color.equalsIgnoreCase(other.color) &&
-               engineType.equalsIgnoreCase(other.engineType) &&
-               gearbox.equalsIgnoreCase(other.gearbox);
-    }
-
-    @Override
-    public String toString() {
-        return brand + " " + model + " (" + year + ", " + color + ", " + power + " hp, " + engineType + ", " + gearbox + ")";
-    }
-
-    // Позволява стартиране и чрез java Car
-    public static void main(String[] args) {
-        Test.main(args);
-    }
 }
 
 // 5. Клас Test с main метод според условието
 class Test {
     public static void printCars(Car[] cars) {
         for (int i = 0; i < cars.length; i++) {
-            System.out.println("  " + (i + 1) + ". " + cars[i]);
+            System.out.println("  " + (i + 1) + ". " + cars[i].getBrand() + " " + cars[i].getModel() + " (" + cars[i].getYear() + ", " + cars[i].getColor() + ", " + cars[i].getPower() + " hp, " + cars[i].getEngineType() + ", " + cars[i].getGearbox() + ")");
         }
     }
 

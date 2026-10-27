@@ -1,3 +1,5 @@
+package day_20_10_2026;
+
 import java.util.ArrayList;
 
 interface Workable {

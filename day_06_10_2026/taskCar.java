@@ -1,4 +1,4 @@
-// 1. Клас Car
+
 class Car {
     private String brand;
     private String model;
@@ -8,7 +8,6 @@ class Car {
     private String gearbox;
     private int year;
 
-    // Конструктор без параметри
     public Car() {
     }
 
@@ -82,12 +81,11 @@ class Car {
 
     // 2. Метод, който филтрира по първа буква на марката
     public static Car[] filterByLetter(Car[] cars, char letter) {
-        if (cars == null) return new Car[0];
 
         char upperLetter = Character.toUpperCase(letter);
         int count = 0;
         for (int i = 0; i < cars.length; i++) {
-            if (cars[i] != null && cars[i].getBrand() != null && !cars[i].getBrand().isEmpty()) {
+            if (cars[i] != null && cars[i].getBrand() != null) {
                 if (Character.toUpperCase(cars[i].getBrand().charAt(0)) == upperLetter) {
                     count++;
                 }
@@ -97,7 +95,7 @@ class Car {
         Car[] result = new Car[count];
         int index = 0;
         for (int i = 0; i < cars.length; i++) {
-            if (cars[i] != null && cars[i].getBrand() != null && !cars[i].getBrand().isEmpty()) {
+            if (cars[i] != null && cars[i].getBrand() != null) {
                 if (Character.toUpperCase(cars[i].getBrand().charAt(0)) == upperLetter) {
                     result[index++] = cars[i];
                 }
@@ -106,45 +104,44 @@ class Car {
         return result;
     }
 
-    // 3. Метод за сортиране по марка (ascending = true за възходящ, false за низходящ)
-    public static Car[] sortByBrand(Car[] cars, boolean ascending) {
-        if (cars == null) return new Car[0];
+    // // 3. Метод за сортиране по марка (ascending = true за възходящ, false за
+    // // низходящ)
+    // public static Car[] sortByBrand(Car[] cars, boolean ascending) {
 
-        Car[] sorted = cars.clone();
-        for (int i = 0; i < sorted.length - 1; i++) {
-            for (int j = 0; j < sorted.length - i - 1; j++) {
-                int cmp = sorted[j].getBrand().compareToIgnoreCase(sorted[j + 1].getBrand());
-                boolean shouldSwap = ascending ? (cmp > 0) : (cmp < 0);
-                if (shouldSwap) {
-                    Car temp = sorted[j];
-                    sorted[j] = sorted[j + 1];
-                    sorted[j + 1] = temp;
-                }
-            }
-        }
-        return sorted;
-    }
+    //     Car[] sorted = cars.clone();
+    //     for (int i = 0; i < sorted.length - 1; i++) {
+    //         for (int j = i + 1; j < sorted.length; j++) {
+    //             int cmp = sorted[i].getBrand().compareToIgnoreCase(sorted[j].getBrand());
+    //             if (ascending ? cmp > 0 : cmp < 0) {
+    //                 Car temp = sorted[i];
+    //                 sorted[i] = sorted[j];
+    //                 sorted[j] = temp;
+    //             }
+    //         }
+    //     }
+    //     return sorted;
+    // }
 
     // 4. Метод, който премахва повтарящите се коли
     public static Car[] removeDuplicates(Car[] cars) {
-        if (cars == null) return new Car[0];
 
         Car[] temp = new Car[cars.length];
         int uniqueCount = 0;
 
         for (int i = 0; i < cars.length; i++) {
-            if (cars[i] == null) continue;
+            if (cars[i] == null)
+                continue;
 
             boolean isDuplicate = false;
             for (int j = 0; j < uniqueCount; j++) {
                 Car other = temp[j];
                 if (cars[i].getBrand().equalsIgnoreCase(other.getBrand()) &&
-                    cars[i].getModel().equalsIgnoreCase(other.getModel()) &&
-                    cars[i].getColor().equalsIgnoreCase(other.getColor()) &&
-                    cars[i].getPower() == other.getPower() &&
-                    cars[i].getEngineType().equalsIgnoreCase(other.getEngineType()) &&
-                    cars[i].getGearbox().equalsIgnoreCase(other.getGearbox()) &&
-                    cars[i].getYear() == other.getYear()) {
+                        cars[i].getModel().equalsIgnoreCase(other.getModel()) &&
+                        cars[i].getColor().equalsIgnoreCase(other.getColor()) &&
+                        cars[i].getPower() == other.getPower() &&
+                        cars[i].getEngineType().equalsIgnoreCase(other.getEngineType()) &&
+                        cars[i].getGearbox().equalsIgnoreCase(other.getGearbox()) &&
+                        cars[i].getYear() == other.getYear()) {
                     isDuplicate = true;
                     break;
                 }
@@ -167,7 +164,9 @@ class Car {
 class Test {
     public static void printCars(Car[] cars) {
         for (int i = 0; i < cars.length; i++) {
-            System.out.println("  " + (i + 1) + ". " + cars[i].getBrand() + " " + cars[i].getModel() + " (" + cars[i].getYear() + ", " + cars[i].getColor() + ", " + cars[i].getPower() + " hp, " + cars[i].getEngineType() + ", " + cars[i].getGearbox() + ")");
+            System.out.println("  " + (i + 1) + ". " + cars[i].getBrand() + " " + cars[i].getModel() + " ("
+                    + cars[i].getYear() + ", " + cars[i].getColor() + ", " + cars[i].getPower() + " hp, "
+                    + cars[i].getEngineType() + ", " + cars[i].getGearbox() + ")");
         }
     }
 

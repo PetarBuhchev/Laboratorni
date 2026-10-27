@@ -108,6 +108,6 @@ class CompanyET extends Company {
         System.out.println("Owner name: " + et.getOwnerName());
         System.out.println("Initial capital: " + et.getInitialCapital());
         System.out.println("Actual capital: " + et.getActualCapital());
-        System.out.println("Profit to date: " + et.calculateProfit());S
+        System.out.println("Profit to date: " + et.calculateProfit());
     }
 }

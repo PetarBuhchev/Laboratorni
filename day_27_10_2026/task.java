@@ -4,34 +4,26 @@ import java.util.List;
 import java.util.Scanner;
 
 class ErrorInUsername extends Exception {
-    String error;
-
     ErrorInUsername(String error) {
-        this.error = error;
+        super(error);
     }
 }
 
 class ErrorUsernameIsEmpty extends Exception {
-    String error;
-
     ErrorUsernameIsEmpty(String error) {
-        this.error = error;
+        super(error);
     }
 }
 
 class ErrorPasswordIsEmpty extends Exception {
-    String error;
-
     ErrorPasswordIsEmpty(String error) {
-        this.error = error;
+        super(error);
     }
 }
 
 class ErrorInPassword extends Exception {
-    String error;
-
     ErrorInPassword(String error) {
-        this.error = error;
+        super(error);
     }
 }
 
@@ -39,7 +31,7 @@ class User {
     private String username;
     private String password;
 
-    public User(String username, String password) {
+    public User(String username, String password) throws ErrorUsernameIsEmpty, ErrorPasswordIsEmpty {
         setUsername(username);
         setPassword(password);
     }
@@ -48,9 +40,9 @@ class User {
         return username;
     }
 
-    public void setUsername(String username) {
-        if (username == null || username == "") {
-            throw new ErrorUsernameIsEmpty("The username should not be emply");
+    public void setUsername(String username) throws ErrorUsernameIsEmpty {
+        if (username == null || username.trim().isEmpty()) {
+            throw new ErrorUsernameIsEmpty("The username should not be empty");
         }
         this.username = username;
     }
@@ -59,8 +51,8 @@ class User {
         return password;
     }
 
-    public void setPassword(String password) {
-        if (password == null || password == "") {
+    public void setPassword(String password) throws ErrorPasswordIsEmpty {
+        if (password == null || password.trim().isEmpty()) {
             throw new ErrorPasswordIsEmpty("The password should not be empty");
         }
         this.password = password;
@@ -77,9 +69,9 @@ public class task {
         Scanner scn = new Scanner(System.in);
         List<User> users = new ArrayList<>();
         int choice = 0;
+        System.out.println("Welcome to the app!");
 
         do {
-            System.out.println("Welcome to the app!");
             System.out.println("Please, choose between the options 1,2,3");
             System.out.println("1. Adds new user");
             System.out.println("2. Shows list of all users");
@@ -112,8 +104,7 @@ public class task {
                         User newUser = new User(username, password);
                         users.add(newUser);
                         System.out.println("The username is added successfully!");
-                    } catch (InputMismatchException e) {
-                        System.out.println(e.getMessage());
+                    } catch (Exception e) {
                         System.out.println("Error in validation: " + e.getMessage());
                     }
                     break;

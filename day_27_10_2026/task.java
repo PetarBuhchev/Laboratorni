@@ -31,7 +31,8 @@ class User {
     private String username;
     private String password;
 
-    public User(String username, String password) throws ErrorUsernameIsEmpty, ErrorPasswordIsEmpty {
+    public User(String username, String password)
+            throws ErrorUsernameIsEmpty, ErrorPasswordIsEmpty, ErrorInUsername, ErrorInPassword {
         setUsername(username);
         setPassword(password);
     }
@@ -40,10 +41,12 @@ class User {
         return username;
     }
 
-    public void setUsername(String username) throws ErrorUsernameIsEmpty {
+    public void setUsername(String username) throws ErrorUsernameIsEmpty, ErrorInUsername {
         if (username == null || username.trim().isEmpty()) {
             throw new ErrorUsernameIsEmpty("The username should not be empty");
         }
+        if (!username.contains("@"))
+            throw new ErrorInUsername("Username should contain @");
         this.username = username;
     }
 
@@ -51,10 +54,12 @@ class User {
         return password;
     }
 
-    public void setPassword(String password) throws ErrorPasswordIsEmpty {
+    public void setPassword(String password) throws ErrorPasswordIsEmpty, ErrorInPassword {
         if (password == null || password.trim().isEmpty()) {
             throw new ErrorPasswordIsEmpty("The password should not be empty");
         }
+        if (password.length() < 6)
+            throw new ErrorInPassword("Password should be 6 symbols long at least.");
         this.password = password;
     }
 
@@ -93,13 +98,9 @@ public class task {
                     try {
                         System.out.print("Input username: ");
                         String username = scn.nextLine();
-                        if (!username.contains("@"))
-                            throw new ErrorInUsername("Username should contain @");
 
                         System.out.print("Input password: ");
                         String password = scn.nextLine();
-                        if (password.length() < 6)
-                            throw new ErrorInPassword("Password should be 6 symbols long at least.");
 
                         User newUser = new User(username, password);
                         users.add(newUser);

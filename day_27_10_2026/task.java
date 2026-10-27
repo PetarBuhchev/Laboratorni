@@ -69,14 +69,19 @@ public class task {
                     try {
                         System.out.print("Input username: ");
                         String username = scn.nextLine();
+                        if (!username.contains("@"))
+                            throw new InputMismatchException("Username should contain @");
 
                         System.out.print("Input password: ");
                         String password = scn.nextLine();
+                        if (password.length() < 6)
+                            throw new InputMismatchException("Password must be longer than 6 symbols");
 
                         User newUser = new User(username, password);
                         users.add(newUser);
                         System.out.println("The username is added successfully!");
-                    } catch (IllegalArgumentException e) {
+                    } catch (InputMismatchException e) {
+                        System.out.println(e.getMessage());
                         System.out.println("Error in validation: " + e.getMessage());
                     }
                     break;

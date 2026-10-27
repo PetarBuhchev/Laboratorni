@@ -3,6 +3,38 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+class ErrorInUsername extends Exception {
+    String error;
+
+    ErrorInUsername(String error) {
+        this.error = error;
+    }
+}
+
+class ErrorUsernameIsEmpty extends Exception {
+    String error;
+
+    ErrorUsernameIsEmpty(String error) {
+        this.error = error;
+    }
+}
+
+class ErrorPasswordIsEmpty extends Exception {
+    String error;
+
+    ErrorPasswordIsEmpty(String error) {
+        this.error = error;
+    }
+}
+
+class ErrorInPassword extends Exception {
+    String error;
+
+    ErrorInPassword(String error) {
+        this.error = error;
+    }
+}
+
 class User {
     private String username;
     private String password;
@@ -18,7 +50,7 @@ class User {
 
     public void setUsername(String username) {
         if (username == null || username == "") {
-            throw new IllegalArgumentException("The username should not be emply");
+            throw new ErrorUsernameIsEmpty("The username should not be emply");
         }
         this.username = username;
     }
@@ -29,7 +61,7 @@ class User {
 
     public void setPassword(String password) {
         if (password == null || password == "") {
-            throw new IllegalArgumentException("The password should not be empty");
+            throw new ErrorPasswordIsEmpty("The password should not be empty");
         }
         this.password = password;
     }
@@ -70,12 +102,12 @@ public class task {
                         System.out.print("Input username: ");
                         String username = scn.nextLine();
                         if (!username.contains("@"))
-                            throw new InputMismatchException("Username should contain @");
+                            throw new ErrorInUsername("Username should contain @");
 
                         System.out.print("Input password: ");
                         String password = scn.nextLine();
                         if (password.length() < 6)
-                            throw new InputMismatchException("Password must be longer than 6 symbols");
+                            throw new ErrorInPassword("Password should be 6 symbols long at least.");
 
                         User newUser = new User(username, password);
                         users.add(newUser);

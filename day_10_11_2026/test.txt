@@ -1,6 +1,1 @@
-test3@test.bg
-test4@test.bg
-test5@test.bg
-test@test.bg
-test1@test.bg
-test2@test.bg
+petar@petar.bg

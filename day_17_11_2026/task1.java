@@ -84,7 +84,10 @@ public class task1 {
             int age = Integer.parseInt(scanner.nextLine());
 
             Person newPerson = new Person(name, age);
-
+            if (people.size() == 0) {
+                people.add(newPerson);
+                continue;
+            }
             for (Person person : people) {
                 if (person.equals(newPerson)) {
                     continue;
@@ -93,15 +96,8 @@ public class task1 {
                     break;
                 }
             }
-            if (!people.contains(newPerson)) {
-                people.add(newPerson);
-                System.out.println("The user is successfully added.");
-            } else {
-                System.out.println("User with name \"" + name + "\" already exists and won't be added!");
-            }
         }
 
-        // Принтиране на уникалните потребители
         System.out.println("\n===== Unique users =====");
         if (people.isEmpty()) {
             System.out.println("No added users");
